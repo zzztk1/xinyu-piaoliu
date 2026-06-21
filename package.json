@@ -1,41 +1,21 @@
 {
   "name": "xinyu-piaoliu",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "engines": {
-    "node": ">=22.13.0"
-  },
+  "version": "1.0.0",
+  "description": "心屿漂流：Next.js + FastAPI 的夜间匿名情绪漂流产品",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "api": "node server/index.mjs",
-    "dev:full": "concurrently \"npm run api\" \"npm run dev\"",
-    "start": "node server/index.mjs",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "qa:model": "node scripts/run-model-qa.mjs",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "lucide-react": "^1.21.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"python -m uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000\"",
+    "build": "npm run build --prefix frontend",
+    "start:frontend": "npm run start --prefix frontend",
+    "start:backend": "python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000",
+    "api": "python -m uvicorn backend.app.main:app --host 127.0.0.1 --port 8000",
+    "qa:model": "python -m compileall backend && npm run build --prefix frontend"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@types/node": "^24.12.3",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.1",
-    "concurrently": "^10.0.3",
-    "eslint": "^10.3.0",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
-    "globals": "^17.6.0",
-    "typescript": "~6.0.2",
-    "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12"
+    "concurrently": "^10.0.3"
+  },
+  "engines": {
+    "node": ">=22.13.0",
+    "python": ">=3.11"
   }
 }

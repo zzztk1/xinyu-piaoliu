@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { FormEvent, MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from 'react'
 import {
@@ -15,7 +17,6 @@ import {
   UserRound,
   Waves,
 } from 'lucide-react'
-import './App.css'
 
 type Dimensions = {
   calm: number
