@@ -1,0 +1,136 @@
+{
+  "schema_version": "1.0",
+  "name": "vibechat-core",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/api/dev/reset",
+      "status": 200,
+      "required_fields": ["ok", "reset"]
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "required_fields": ["ok", "service", "mode"]
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/register",
+      "status": 200,
+      "body": {
+        "cabinName": "夜航员契约",
+        "passcode": "2468"
+      },
+      "required_fields": ["ok", "account.id", "account.cabinName", "account.createdAt"]
+    },
+    {
+      "method": "POST",
+      "path": "/api/auth/login",
+      "status": 200,
+      "body": {
+        "cabinName": "夜航员契约",
+        "passcode": "2468"
+      },
+      "required_fields": ["ok", "account.id", "account.cabinName", "account.lastSeenAt"]
+    },
+    {
+      "method": "POST",
+      "path": "/api/analyze",
+      "status": 200,
+      "body": {
+        "text": "我此刻有点焦虑，想找一个陌生人慢慢聊，不想把压力带给熟人。"
+      },
+      "required_fields": [
+        "ok",
+        "user.id",
+        "user.alias",
+        "entry.id",
+        "entry.signalStrength",
+        "clarityScore",
+        "nextQuestion.id",
+        "nextQuestion.options",
+        "emotionTheme.key",
+        "emotionTheme.label",
+        "analysis.id",
+        "analysis.inputHash",
+        "analysis.primaryEmotion",
+        "analysis.label",
+        "analysis.intensity",
+        "analysis.valence",
+        "analysis.arousal",
+        "analysis.keywords",
+        "analysis.matchStyle",
+        "analysis.supportNeed",
+        "analysis.rationale",
+        "analysis.safetyFlag",
+        "analysis.dimensions.calm",
+        "analysis.dimensions.energy",
+        "analysis.dimensions.social",
+        "analysis.dimensions.stress",
+        "analysis.dimensions.openness",
+        "analysis.dimensions.clarity",
+        "driftIdentity.alias",
+        "driftIdentity.title",
+        "driftIdentity.cabinSignal",
+        "moodCoordinate.x",
+        "moodCoordinate.y",
+        "moodCoordinate.label",
+        "moodCoordinate.intensity",
+        "moodCoordinate.dimensions.calm",
+        "moodCoordinate.dimensions.energy",
+        "moodCoordinate.dimensions.social",
+        "moodCoordinate.dimensions.stress",
+        "moodCoordinate.dimensions.openness",
+        "moodCoordinate.dimensions.clarity",
+        "signalTags",
+        "followUpQuestions",
+        "safetyBoundary"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/profile",
+      "status": 404,
+      "body": {
+        "accountId": "missing-account",
+        "profile": {
+          "mbti": "INFP",
+          "zodiac": "双鱼座",
+          "selfIntro": "今晚只想轻轻聊几句。",
+          "boundary": "不交换联系方式。",
+          "publicFields": { "mbti": true, "zodiac": true, "selfIntro": true, "boundary": true }
+        }
+      },
+      "required_fields": ["ok", "errorType", "message"]
+    },
+    {
+      "method": "POST",
+      "path": "/api/messages",
+      "status": 422,
+      "body": {
+        "roomId": "missing-room",
+        "senderId": "missing-user",
+        "text": "加微信吗"
+      },
+      "required_fields": ["ok", "errorType", "message"]
+    },
+    {
+      "method": "GET",
+      "path": "/api/echo-cards?accountId=0",
+      "status": 200,
+      "required_fields": ["ok", "echoCards", "emotionTrail"]
+    },
+    {
+      "method": "POST",
+      "path": "/api/report",
+      "status": 200,
+      "body": {
+        "accountId": "0",
+        "roomId": "contract-room",
+        "reason": "验收安全入口"
+      },
+      "required_fields": ["ok", "report.id", "report.reason", "message"]
+    }
+  ]
+}
